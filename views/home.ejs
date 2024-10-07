@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>URL SHORTNER</h1>
+    <% if (locals.id) { %>
+        <p>URL Generated: http://localhost:8001/url/<%= id %></p>
+    <% } %>
+    <form action="/url" method="post">
+        <label for="redirectURL" >Please enter the url</label>
+        <input type="text" name="redirectURL" placeholder="https://exmaple.com/">
+        <button type="submit">Create</button>
+    </form>
+    <h1>All URLS</h1>
+    <% if(locals.urls){ %>
+        <table>
+        <% urls.map((url)=>{ %>
+            <tr>
+                <td><%= url.redirectURL %></td>
+                <td><%= url.shortId %></td>
+                <td><%= url.totalClicks.length %></td>
+            </tr>
+        <% }) %>    
+        </table>
+    <% } %>    
+</body>
+</html>
